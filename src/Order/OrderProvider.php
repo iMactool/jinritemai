@@ -1,12 +1,10 @@
 <?php
-/**
- * ======================================================
- * Author: cc
- * Created by PhpStorm.
- * Copyright (c)  cc Inc. All rights reserved.
- * Desc: 代码功能描述
- *  ======================================================
+
+/*
+ * * Author: cc
+ *  * Created by PhpStorm.
  */
+
 namespace Imactool\Jinritemai\Order;
 
 use Imactool\Jinritemai\Core\Container;
@@ -16,7 +14,7 @@ class OrderProvider implements Provider
 {
     public function serviceProvider(Container $container)
     {
-        $container['Order'] = function ($container){
+        $container['Order'] = function ($container) {
             return new Order($container);
         };
     }

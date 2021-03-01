@@ -1,12 +1,10 @@
 <?php
-/**
- * ======================================================
- * Author: cc
- * Created by PhpStorm.
- * Copyright (c)  cc Inc. All rights reserved.
- * Desc: 代码功能描述
- *  ======================================================
+
+/*
+ * * Author: cc
+ *  * Created by PhpStorm.
  */
+
 namespace Imactool\Jinritemai\Product;
 
 use Imactool\Jinritemai\Core\Container;
@@ -16,9 +14,8 @@ class ProductProvider implements Provider
 {
     public function serviceProvider(Container $container)
     {
-        $container['Product'] = function ($container){
+        $container['Product'] = function ($container) {
             return new Product($container);
         };
     }
-
 }
