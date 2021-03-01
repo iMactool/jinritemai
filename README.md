@@ -4,6 +4,8 @@
 
 [![Build Status](https://travis-ci.org/iMactool/jinritemai.svg?branch=master)](https://travis-ci.org/iMactool/jinritemai)
 
+[![StyleCI](https://github.styleci.io/repos/343340719/shield?branch=master)](https://github.styleci.io/repos/343340719?branch=master)
+
 ## 环境需求
 
 ```js
