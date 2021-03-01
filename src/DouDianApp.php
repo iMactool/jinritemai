@@ -1,12 +1,10 @@
 <?php
-/**
- * ======================================================
- * Author: cc
- * Created by PhpStorm.
- * Copyright (c)  cc Inc. All rights reserved.
- * Desc: 代码功能描述
- *  ======================================================
+
+/*
+ * * Author: cc
+ *  * Created by PhpStorm.
  */
+
 namespace Imactool\Jinritemai;
 
 use Imactool\Jinritemai\AfterSale\AfterSaleProvider;
@@ -22,7 +20,6 @@ use Imactool\Jinritemai\Product\ProductProvider;
 use Imactool\Jinritemai\Shop\ShopProvider;
 use Imactool\Jinritemai\Stock\StockProvider;
 
-
 class DouDianApp extends ContainerBase
 {
     private $config;
@@ -30,7 +27,8 @@ class DouDianApp extends ContainerBase
     use Client;
 
     /**
-     * 配置服务提供者
+     * 配置服务提供者.
+     *
      * @var string[]
      */
     protected $provider = [
@@ -52,6 +50,4 @@ class DouDianApp extends ContainerBase
         Client::setAppConfig($config);
         parent::__construct($config);
     }
-
-
 }
