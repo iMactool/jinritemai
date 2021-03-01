@@ -1,15 +1,12 @@
 <?php
-/**
- * ======================================================
- * Author: cc
- * Created by PhpStorm.
- * Copyright (c)  cc Inc. All rights reserved.
- * Desc: 代码功能描述
- *  ======================================================
+
+/*
+ * * Author: cc
+ *  * Created by PhpStorm.
  */
+
 namespace Imactool\Jinritemai\Exceptions;
 
 class InvalidArgumentException extends Exception
 {
-
 }

@@ -1,12 +1,10 @@
 <?php
-/**
- * ======================================================
- * Author: cc
- * Created by PhpStorm.
- * Copyright (c)  cc Inc. All rights reserved.
- * Desc: 提供基础服务
- *  ======================================================
+
+/*
+ * * Author: cc
+ *  * Created by PhpStorm.
  */
+
 namespace Imactool\Jinritemai\Core;
 
 use Imactool\Jinritemai\Http\Client;
@@ -25,5 +23,4 @@ class BaseService
 
         $this->appRunConfig = self::getAppConfig();
     }
-
 }

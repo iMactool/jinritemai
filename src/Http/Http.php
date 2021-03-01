@@ -1,64 +1,63 @@
 <?php
-/**
- * ======================================================
- * Author: cc
- * Created by PhpStorm.
- * Copyright (c)  cc Inc. All rights reserved.
- * Desc: 代码功能描述
- *  ======================================================
+
+/*
+ * * Author: cc
+ *  * Created by PhpStorm.
  */
+
 namespace Imactool\Jinritemai\Http;
 
 use GuzzleHttp\Client;
 
-
 class Http
 {
     protected $guzzleOptions = [];
-    protected $baseUri ='https://openapi-fxg.jinritemai.com/'; //正式环境
+    protected $baseUri = 'https://openapi-fxg.jinritemai.com/'; //正式环境
 
-    protected function getHttpClient(){
-
-        if (!isset($this->guzzleOptions['base_uri'])){
+    protected function getHttpClient()
+    {
+        if (!isset($this->guzzleOptions['base_uri'])) {
             $this->guzzleOptions['base_uri'] = $this->baseUri;
         }
+
         return new Client($this->guzzleOptions);
     }
 
-    public function request($method , $endpoint , $options = []){
+    public function request($method, $endpoint, $options = [])
+    {
         return $this->unwrapResponse($this->getHttpClient()->{$method}($endpoint, $options));
     }
 
     /**
-     * 统一转换响应结果为 json 格式
+     * 统一转换响应结果为 json 格式.
+     *
      * @param $response
      */
-    protected function unwrapResponse($response){
-
+    protected function unwrapResponse($response)
+    {
         $contentType = $response->getHeaderLine('Content-Type');
         $contents = $response->getBody()->getContents();
-        if (false !== stripos($contentType,'json') || stripos($contentType,'javascript')){
-            return json_decode($contents , true);
-        }else if(false !== stripos($contentType,'xml')){
-            return json_decode(json_encode(simplexml_load_string($contents)),true);
+        if (false !== stripos($contentType, 'json') || stripos($contentType, 'javascript')) {
+            return json_decode($contents, true);
+        } elseif (false !== stripos($contentType, 'xml')) {
+            return json_decode(json_encode(simplexml_load_string($contents)), true);
         }
+
         return $contents;
     }
 
     /**
-     * 用户可以自定义 guzzle 实例的参数
-     * @param array $options
+     * 用户可以自定义 guzzle 实例的参数.
      */
-    public function setGuzzleOptions(array $options=[]){
-
+    public function setGuzzleOptions(array $options = [])
+    {
         $this->guzzleOptions = $options;
     }
 
-    public function setUrl($url){
-        $this->baseUri = trim($url,'/') . '/';
+    public function setUrl($url)
+    {
+        $this->baseUri = trim($url, '/').'/';
+
         return $this;
     }
-
-
-
 }

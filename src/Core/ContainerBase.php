@@ -1,11 +1,8 @@
 <?php
-/**
- * ======================================================
- * Author: cc
- * Created by PhpStorm.
- * Copyright (c)  cc Inc. All rights reserved.
- * Desc: 代码功能描述
- *  ======================================================
+
+/*
+ * * Author: cc
+ *  * Created by PhpStorm.
  */
 
 namespace Imactool\Jinritemai\Core;
@@ -18,7 +15,8 @@ class ContainerBase extends Container
     protected $provider = [];
 
     /**
-     * 公共配置参数
+     * 公共配置参数.
+     *
      * @var array
      */
     public $params = [];
@@ -27,8 +25,8 @@ class ContainerBase extends Container
     {
         $this->params = $params;
 
-        $providerCallback = function ($provider){
-            $obj = new $provider;
+        $providerCallback = function ($provider) {
+            $obj = new $provider();
             $this->serviceRegsiter($obj);
         };
         array_walk($this->provider, $providerCallback);
@@ -36,6 +34,6 @@ class ContainerBase extends Container
 
     public function __get($key)
     {
-       return $this->offsetGet($key);
+        return $this->offsetGet($key);
     }
 }
