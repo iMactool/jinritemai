@@ -19,7 +19,7 @@ PHP OpenSSL 扩展
 ## Installing
 
 ```shell
-$ composer require imactool/jinritemai:dev-master
+$ composer require imactool/jinritemai
 ```
 
 ## Usage
