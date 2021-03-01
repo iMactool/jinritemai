@@ -40,18 +40,17 @@ $config = [
 
 $app = new DouDianApp($config);
 
-#先获取 获取店铺授权URL
+#1、先获取 获取店铺授权URL
 $authUrl = $app->Auth->generateAuthUrl('pigcms');
  
 
-#2、拿到 URL code 之后，需要调用一次 requestAccessToken(); 之后就不需要再次调用
+#2、拿到 URL code 之后，需要调用一次 requestAccessToken(); 
 $code = 'URL code ';
 $accessInfo = $app->Auth->requestAccessToken($code);
  
 
-#3.刷新 token
-$refresh_token  = '你的 refresh_token';
-$tokenInfo = $app->Auth->refreshAccessToken($refresh_token);
+#3.开始调用接口 
+$result = $app->Shop->getShopBrandList();
 
 ```
 
@@ -61,6 +60,8 @@ $tokenInfo = $app->Auth->refreshAccessToken($refresh_token);
 > 以下列出来的接口都是已实现的
 > 具体可以看 src/DouDianApp.php .
 > $app 在本文档都是指的 new DouDianApp($config) 得到的实例
+> 不需要自己刷新 refresh_token SDK 内部会自动实现刷新。
+> 当如果返回 token 过期 请参考[问题](#问题)
 >
 
 #### 店铺api  `$app->Shop` 
