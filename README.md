@@ -2,7 +2,11 @@
 
 <p align="center"> 工具型抖店开放平台SDK.</p>
 
-[![Build Status](https://travis-ci.org/iMactool/jinritemai.svg?branch=master)](https://travis-ci.org/iMactool/jinritemai) [![StyleCI](https://github.styleci.io/repos/343340719/shield?branch=master)](https://github.styleci.io/repos/343340719?branch=master) [![License](https://poser.pugx.org/imactool/gjpzyx/license)](//packagist.org/packages/imactool/gjpzyx) [![Total Downloads](https://poser.pugx.org/imactool/gjpzyx/downloads)](//packagist.org/packages/imactool/gjpzyx) [![.gitattributes](https://poser.pugx.org/imactool/gjpzyx/gitattributes)](//packagist.org/packages/imactool/gjpzyx)
+[![Build Status](https://travis-ci.org/iMactool/jinritemai.svg?branch=master)](https://travis-ci.org/iMactool/jinritemai) [![StyleCI](https://github.styleci.io/repos/343340719/shield?branch=master)](https://github.styleci.io/repos/343340719?branch=master) 
+[![Latest Stable Version](https://poser.pugx.org/imactool/jinritemai/v)](//packagist.org/packages/imactool/jinritemai)
+[![Latest Unstable Version](https://poser.pugx.org/imactool/jinritemai/v/unstable)](//packagist.org/packages/imactool/jinritemai)
+[![Total Downloads](https://poser.pugx.org/imactool/jinritemai/downloads)](//packagist.org/packages/imactool/jinritemai)
+[![License](https://poser.pugx.org/imactool/jinritemai/license)](//packagist.org/packages/imactool/jinritemai)
 
 ## 环境需求
 
