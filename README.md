@@ -2,10 +2,12 @@
 
 <p align="center"> 工具型抖店开放平台SDK.</p>
 
+[![Build Status](https://travis-ci.org/iMactool/jinritemai.svg?branch=master)](https://travis-ci.org/iMactool/jinritemai)
+
 ## 环境需求
 
 ```js
-PHP >= 7.0
+PHP >= 7.1
 PHP cURL 扩展
 PHP OpenSSL 扩展
 ```
