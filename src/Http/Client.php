@@ -40,7 +40,6 @@ trait Client
      * @param string $endpoint
      * @param array  $query
      * @param array  $headers
-     * @param bool   $mergeParams 默认 true ，合并公共参数， false 不合并 比如请求 access_token 的时候参数是额外
      *
      * @return mixed
      */
