@@ -15,7 +15,6 @@ use Imactool\Jinritemai\Http\Client;
 use Imactool\Jinritemai\Auth\AuthProvider;
 use Imactool\Jinritemai\Insurance\InsuranceProvider;
 use Imactool\Jinritemai\Logistics\LogisticsProvider;
-use Imactool\Jinritemai\Message\MessageProvider;
 use Imactool\Jinritemai\Order\OrderProvider;
 use Imactool\Jinritemai\Product\ProductProvider;
 use Imactool\Jinritemai\Shop\ShopProvider;
@@ -42,7 +41,6 @@ class DouDianApp extends ContainerBase
         LogisticsProvider::class,
         OrderProvider::class,
         StockProvider::class,
-        MessageProvider::class,
     ];
 
     public function __construct(array $config)
