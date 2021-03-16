@@ -24,7 +24,7 @@ $ composer require imactool/jinritemai
 
 ## Usage
 
-```php
+```
 
 require __DIR__ .'/vendor/autoload.php';
 
@@ -41,7 +41,7 @@ $config = [
 $app = new DouDianApp($config);
 
 #1、先获取 获取店铺授权URL
-$authUrl = $app->Auth->generateAuthUrl('pigcms');
+$authUrl = $app->Auth->generateAuthUrl('state');
  
 
 #2、拿到 URL code 之后，需要调用一次 requestAccessToken(); 
@@ -163,7 +163,7 @@ $result = $app->Shop->getShopBrandList();
 
 #### 账单 API
 
-- 仅自用型应用可使调用该接口 ，暂不支持
+- 仅自用型应用可使调用该接口 ，(非工具型)暂不支持
 
 #### 评价 API `$app->Commnet`
 
