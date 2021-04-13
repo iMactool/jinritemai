@@ -15,10 +15,8 @@ class ContainerBase extends Container
      */
     protected $provider = [];
 
-
     public function __construct()
     {
-
         $providerCallback = function ($provider) {
             $obj = new $provider();
             $this->serviceRegsiter($obj);
