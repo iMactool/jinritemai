@@ -10,7 +10,6 @@ namespace Imactool\Jinritemai\Auth;
 
 use Imactool\Jinritemai\Core\BaseService;
 use Imactool\Jinritemai\Core\CacheAdapter;
-use Symfony\Contracts\Cache\ItemInterface;
 
 class Auth extends BaseService
 {
@@ -92,5 +91,4 @@ class Auth extends BaseService
 
         return $result;
     }
-
 }

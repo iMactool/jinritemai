@@ -14,7 +14,6 @@ use Imactool\Jinritemai\Auth\AuthProvider;
 
 class OAuthService extends ContainerBase
 {
-
     use Client;
 
     /**

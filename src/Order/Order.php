@@ -15,7 +15,7 @@ class Order extends BaseService
     //添加订单备注 addOrderRemark()
     public function addOrderRemark(array $params)
     {
-       return $this->post('order/addOrderRemark', $params);
+        return $this->post('order/addOrderRemark', $params);
     }
 
     //设置店铺设置地址变更审核 setAddressAppliedSwitch()
@@ -69,7 +69,7 @@ class Order extends BaseService
     //查询商家服务单详情请求 serviceDetail()
     public function serviceDetail(array $params)
     {
-        return  $this->post('order/serviceDetail', $params);
+        return $this->post('order/serviceDetail', $params);
     }
 
     //获取服务请求列表 serviceList()
@@ -87,7 +87,7 @@ class Order extends BaseService
     //未支付订单改货款 updateOrderAmount()
     public function updateOrderAmount(array $params)
     {
-        return  $this->post('order/updateOrderAmount', $params);
+        return $this->post('order/updateOrderAmount', $params);
     }
 
     //未支付订单邮费修改 updateOrderPostAmount()
