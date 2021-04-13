@@ -1,6 +1,7 @@
 .idea
 *.DS_Store
 /vendor
+/example/vendor
 /coverage
 sftp-config.json
 composer.lock

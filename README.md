@@ -22,12 +22,16 @@ PHP OpenSSL 扩展
 $ composer require imactool/jinritemai
 ```
 
-## Usage
+## Usage 
+> 具体可以看 example 示例代码 ，需要 composer install 
+
+### 授权相关
 
 ```
 
 require __DIR__ .'/vendor/autoload.php';
 
+use Imactool\Jinritemai\OAuthService;
 use Imactool\Jinritemai\DouDianApp;
 
 date_default_timezone_set('PRC');
@@ -38,19 +42,30 @@ $config = [
     'service_id'    => '你的服务id' 
 ];
 
-$app = new DouDianApp($config);
+$servic = new OAuthService($config);
 
 #1、先获取 获取店铺授权URL
-$authUrl = $app->Auth->generateAuthUrl('state');
+$authUrl = $servic->Auth->generateAuthUrl('state');
  
 
-#2、拿到 URL code 之后，需要调用一次 requestAccessToken(); 
+#2、拿到 URL code 之后，需要调用一次 requestAccessToken() 获取授权方授权信息 ; 
+# 店铺同意授权后，使用授权code，GET方式请求可获取access_token：
 $code = 'URL code ';
-$accessInfo = $app->Auth->requestAccessToken($code);
+$accessInfo = $servic->Auth->requestAccessToken($code);
  
+ ```
+
+### 获取授权方实例
+```
+# 授权方已经把店铺授权给你的抖店开放平台了，接下来的代授权方实现业务只需一行代码即可获得授权方实例。
+$shopid = 2222; //$shopid 为授权方店铺的ID shop_id
+$refresh_token = '授权店铺token'; //$refresh_token 为授权方的 refresh_token，可通过 获取授权方授权信息 (`$servic->Auth->requestAccessToken($code)`) 接口获得。
+
+$app = new DouDianApp($shopid,$refresh_token);
+
 
 #3.开始调用接口 
-$result = $app->Shop->getShopBrandList();
+$result = $shopAccount->getShopBrandList();
 
 ```
 
@@ -59,11 +74,12 @@ $result = $app->Shop->getShopBrandList();
 > 基于抖店开放平台的工具类型SDK，暂时不支持自用型。即本`SDK`是服务第三方开发者创建工具型应用（工具型应用必须上架，才能走授权流程）
 > 以下列出来的接口都是已实现的
 > 具体可以看 src/DouDianApp.php .
-> $app 在本文档都是指的 new DouDianApp($config) 得到的实例
+> $app 在本文档都是指的 new DouDianApp($shopid,$refresh_token) 得到的实例
 > 不需要自己刷新 refresh_token SDK 内部会自动实现刷新。
 > 当如果返回 token 过期 请参考[问题](#问题)
 >
 
+ 
 #### 店铺api  `$app->Shop` 
 > 例如 `$app->Shop->getShopBrandList()` 
 

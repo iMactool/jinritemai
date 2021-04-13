@@ -58,23 +58,6 @@ class Auth extends BaseService
             return $result;
         }
 
-        $data = $result['data'];
-
-        CacheAdapter::getInstance()->get($this->getCacheKey('access_token_info'), function (ItemInterface $item) use ($data) {
-            //该 key : access_token_info 主要用于刷新access_token的刷新令牌（有效期：14 天）的存储
-            //不可以从该 key 中获取 access_token 对程序进行访问！
-            $item->expiresAfter(1209600);
-
-            return $data;
-        });
-
-        CacheAdapter::getInstance()->get($this->getCacheKey($this->tokenKey), function (ItemInterface $item) use ($data) {
-            //具体看 https://op.jinritemai.com/help/faq/43/206
-            $item->expiresAfter((int) $data['expires_in']);
-
-            return $access_token = $data['access_token'];
-        });
-
         return $result;
     }
 
@@ -107,24 +90,7 @@ class Auth extends BaseService
             return $result;
         }
 
-        $data = $result['data'];
-
-        CacheAdapter::getInstance()->get($this->getCacheKey('access_token_info'), function (ItemInterface $item) use ($data) {
-            //在 access_token 过期前1h之前，获得的 access_token 不变，有效期也不变！，
-            //用于刷新access_token的刷新令牌（有效期：14 天 [ 1209600 s]）
-            $item->expiresAfter(1209600);
-
-            return $data;
-        });
-
-        CacheAdapter::getInstance()->get($this->getCacheKey($this->tokenKey), function (ItemInterface $item) use ($data) {
-            //access_token接口调用凭证超时时间，单位（秒），默认有效期：7天 [ 604800 s]
-            //具体看 https://op.jinritemai.com/help/faq/43/206
-            $item->expiresAfter((int) $data['expires_in']);
-
-            return $access_token = $data['access_token'];
-        });
-
         return $result;
     }
+
 }

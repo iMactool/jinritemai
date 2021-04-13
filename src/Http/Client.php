@@ -14,7 +14,9 @@ trait Client
 
     public static $client;
     protected static $appConfig;
-    protected $access_token;
+    protected $shop_access_token_key = 'imactool.shop.access_token';//店铺 token 缓存 key
+    protected static $shopConfig;
+
 
     public function httpClient()
     {
@@ -30,9 +32,21 @@ trait Client
         self::$appConfig = $appConfig;
     }
 
+    public static function setShopConfig($shopConfig){
+        self::$shopConfig = $shopConfig;
+    }
+
+    public static function getShopConfig(){
+        return self::$shopConfig;
+    }
+
     public static function getAppConfig()
     {
         return self::$appConfig;
+    }
+
+    public function authorizerTokenKey(){
+        return $this->shop_access_token_key .'.'. self::getShopConfig()['shopId'];
     }
 
     /**
@@ -103,7 +117,7 @@ trait Client
     protected function generateParams(string $url, array $params)
     {
         $method = ltrim(str_replace('/', '.', $url), '.');
-        $accessToken = $this->getAccessToken();
+        $accessToken = $this->getAccessToken($this->authorizerTokenKey(),self::getShopConfig()['refreshToken']);
 
         //公共参数
         $publicParams = [
@@ -153,7 +167,6 @@ trait Client
             'query' => $params,
         ];
         $result = $this->httpClient()->request('get', 'oauth2/refresh_token', $options);
-
         return $result;
     }
 }

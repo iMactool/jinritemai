@@ -19,22 +19,16 @@ trait AuthService
      *
      * @return string
      */
-    public function getAccessToken()
+    public function getAccessToken($shopkey,$refreshToken)
     {
-        $accessToken = CacheAdapter::getInstance()->getItem($this->getCacheKey($this->tokenKey));
+
+        $accessToken = CacheAdapter::getInstance()->getItem($shopkey);
 
         if (!$accessToken->isHit()) {
-            $accessTokenInfo = CacheAdapter::getInstance()->getItem($this->getCacheKey('access_token_info'));
-            if ($accessTokenInfo->isHit()) {
-                $refreshToken = $accessTokenInfo->get()['refresh_token'];
+
                 $result = $this->refreshSelfAccessToken($refreshToken);
                 if (0 === $result['err_no']) {
-                    //更新 key access_token_info
                     $data = $result['data'];
-                    $accessTokenInfo->set($data);
-                    $accessTokenInfo->expiresAfter(1209600);
-                    CacheAdapter::getInstance()->save($accessTokenInfo);
-
                     //更新 key access_token
                     $accessToken->set($data['access_token']);
                     $accessToken->expiresAfter((int) $data['expires_in']);
@@ -42,7 +36,7 @@ trait AuthService
 
                     $this->access_token = $data['access_token'];
                 }
-            }
+
         } else {
             $this->access_token = $accessToken->get();
         }

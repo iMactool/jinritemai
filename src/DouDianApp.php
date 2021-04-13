@@ -22,7 +22,6 @@ use Imactool\Jinritemai\Stock\StockProvider;
 
 class DouDianApp extends ContainerBase
 {
-    private $config;
 
     use Client;
 
@@ -43,10 +42,12 @@ class DouDianApp extends ContainerBase
         StockProvider::class,
     ];
 
-    public function __construct(array $config)
+    public function __construct(int $shopId, string $refreshToken)
     {
-        $this->config = $config;
-        Client::setAppConfig($config);
-        parent::__construct($config);
+        $config['shopId'] = $shopId;
+        $config['refreshToken'] = $refreshToken;
+        Client::setShopConfig($config);
+        parent::__construct();
+
     }
 }

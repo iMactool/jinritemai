@@ -15,16 +15,9 @@ class ContainerBase extends Container
      */
     protected $provider = [];
 
-    /**
-     * 公共配置参数.
-     *
-     * @var array
-     */
-    public $params = [];
 
-    public function __construct(array $params = [])
+    public function __construct()
     {
-        $this->params = $params;
 
         $providerCallback = function ($provider) {
             $obj = new $provider();
