@@ -39,15 +39,14 @@ try {
     var_dump($exception);
 }
 
-// 这个接口不建议调用， SDK 内部会自动管理
-//try {
-//    $refresh_token  = '授权店铺token';
-//    $tokenInfo = $servic->Auth->refreshAccessToken($refresh_token);
-//    file_put_contents('accesstoken-re-info.log',print_r($tokenInfo,1).' -- $refresh_token:'.$refresh_token.PHP_EOL, 8);
-//    var_export($tokenInfo);
-//}catch (Exception $exception){
-//    var_dump($exception);
-//}
+// 删除店铺缓存,一般在
+try {
+    $shopid = 2322; ;
+    $result = $servic->Auth->clearShopCache($shopid);
+    var_export($result);
+}catch (Exception $exception){
+    var_dump($exception);
+}
 
 // 授权方已经把店铺授权给你的抖店开放平台了，接下来的代授权方实现业务只需一行代码即可获得授权方实例。
 $shopid = 2322; //$shopid 为授权方店铺的ID shop_id

@@ -42,8 +42,14 @@ class Order extends BaseService
         return $this->post('order/cancel', $params);
     }
 
-    //获取订单详情 getOrder()
+    //获取订单详情 getOrder() 即将下线
     public function getOrder(array $params)
+    {
+        return $this->post('order/detail', $params);
+    }
+
+    //获取订单详情 getOrderDetail() 新
+    public function getOrderDetail(array $params)
     {
         return $this->post('order/orderDetail', $params);
     }
@@ -54,8 +60,14 @@ class Order extends BaseService
         return $this->post('order/getServiceList', $params);
     }
 
-    //获取订单列 getOrderList()
+    //获取订单列 getOrderList() 即将下线
     public function getOrderList(array $params)
+    {
+        return $this->post('order/list', $params);
+    }
+
+    //获取订单列 getOrderList() 新
+    public function getOrderSearchList(array $params)
     {
         return $this->post('order/searchList', $params);
     }

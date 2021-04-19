@@ -122,9 +122,11 @@ $result = $shopAccount->getShopBrandList();
 - 买家地址变更确认 addressConfirm()
 - 买家主动修改收货地址 addressModify()
 - 取消(货到付款)订单 cancelOrder()
-- 获取订单详情 getOrder()
+- 获取订单详情 getOrder()  即将下线
+- 获取订单详情 getOrderDetail()  即将下线
 - 获取服务单列表 getServiceOrderList()
-- 获取订单列  getOrderList()
+- 获取订单列  getOrderList() 即将下线
+- 获取订单列  getOrderSearchList() 新
 - 回复服务请求 replyService()
 - 查询商家服务单详情请求 serviceDetail()
 - 获取服务请求列表 serviceList()

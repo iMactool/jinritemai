@@ -91,4 +91,13 @@ class Auth extends BaseService
 
         return $result;
     }
+
+    /**
+     * 清除店铺的 token 缓存
+     * @param $shopId 授权店铺的id
+     */
+    public function clearShopCache(int $shopId){
+        $key = 'imactool.shop.access_token.'.$shopId;
+        return CacheAdapter::getInstance()->delete($key);
+    }
 }
