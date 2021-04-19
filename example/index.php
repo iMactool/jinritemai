@@ -41,10 +41,10 @@ try {
 
 // 删除店铺缓存,一般在
 try {
-    $shopid = 2322; ;
+    $shopid = 2322;
     $result = $servic->Auth->clearShopCache($shopid);
     var_export($result);
-}catch (Exception $exception){
+} catch (Exception $exception) {
     var_dump($exception);
 }
 
