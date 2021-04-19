@@ -44,14 +44,16 @@ class DouDianApp extends ContainerBase
     public function __construct(array $config)
     {
         self::$config = $config;
-        Client::setAppConfig('config',$config);
+        Client::setAppConfig('config', $config);
         parent::__construct();
     }
 
-    public function shopApp(int $shopId, string $refreshToken){
+    public function shopApp(int $shopId, string $refreshToken)
+    {
         parent::__construct();
         $this->shopId = $shopId;
         $this->refreshToken = $refreshToken;
+
         return $this;
     }
 }

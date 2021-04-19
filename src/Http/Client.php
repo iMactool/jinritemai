@@ -8,7 +8,6 @@
 
 namespace Imactool\Jinritemai\Http;
 
-
 trait Client
 {
     use AuthService;
@@ -22,35 +21,40 @@ trait Client
         if (!self::$client) {
             self::$client = new Http();
         }
+
         return self::$client;
     }
 
-    public static function setAppConfig($key,$appConfig)
+    public static function setAppConfig($key, $appConfig)
     {
-        self::$appConfig[$key] =  $appConfig;
+        self::$appConfig[$key] = $appConfig;
     }
 
-    public static function getAppConfig($key=null)
+    public static function getAppConfig($key = null)
     {
-        if (is_null($key)){
+        if (is_null($key)) {
             return self::$appConfig['config'];
         }
+
         return self::$appConfig['config'][$key];
     }
 
-    public static function setShopConfig($shopConfig){
-        self::$appConfig = array_merge(self::getAppConfig() , $shopConfig);
+    public static function setShopConfig($shopConfig)
+    {
+        self::$appConfig = array_merge(self::getAppConfig(), $shopConfig);
     }
 
-    public static function getShopConfig($key = null){
-         if (is_null($key)){
+    public static function getShopConfig($key = null)
+    {
+        if (is_null($key)) {
             return self::$appConfig['shop'];
         }
-        return self::$appConfig['shop'][$key];
 
+        return self::$appConfig['shop'][$key];
     }
 
-    public static function getAllConfig(){
+    public static function getAllConfig()
+    {
         return self::$appConfig;
     }
 
