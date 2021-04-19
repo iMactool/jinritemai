@@ -31,7 +31,6 @@ $ composer require imactool/jinritemai
 
 require __DIR__ .'/vendor/autoload.php';
 
-use Imactool\Jinritemai\OAuthService;
 use Imactool\Jinritemai\DouDianApp;
 
 date_default_timezone_set('PRC');
@@ -42,7 +41,7 @@ $config = [
     'service_id'    => '你的服务id' 
 ];
 
-$servic = new OAuthService($config);
+$servic = new DouDianApp($config);
 
 #1、先获取 获取店铺授权URL
 $authUrl = $servic->Auth->generateAuthUrl('state');
@@ -61,7 +60,7 @@ $accessInfo = $servic->Auth->requestAccessToken($code);
 $shopid = 2222; //$shopid 为授权方店铺的ID shop_id
 $refresh_token = '授权店铺token'; //$refresh_token 为授权方的 refresh_token，可通过 获取授权方授权信息 (`$servic->Auth->requestAccessToken($code)`) 接口获得。
 
-$app = new DouDianApp($shopid,$refresh_token);
+$app = $servic->shopApp($shopid,$refresh_token);
 
 
 #3.开始调用接口 
@@ -74,7 +73,7 @@ $result = $shopAccount->getShopBrandList();
 > 基于抖店开放平台的工具类型SDK，暂时不支持自用型。即本`SDK`是服务第三方开发者创建工具型应用（工具型应用必须上架，才能走授权流程）
 > 以下列出来的接口都是已实现的
 > 具体可以看 src/DouDianApp.php .
-> $app 在本文档都是指的 new DouDianApp($shopid,$refresh_token) 得到的实例
+> $app 在本文档都是指的 `$servic->shopApp($shopid,$refresh_token);` 得到的实例
 > 不需要自己刷新 refresh_token SDK 内部会自动实现刷新。
 > 当如果返回 token 过期 请参考[问题](#问题)
 >

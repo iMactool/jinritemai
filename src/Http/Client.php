@@ -8,47 +8,55 @@
 
 namespace Imactool\Jinritemai\Http;
 
+
 trait Client
 {
     use AuthService;
 
     public static $client;
-    protected static $appConfig;
-    protected $shop_access_token_key = 'imactool.shop.access_token'; //店铺 token 缓存 key
-    protected static $shopConfig;
+    protected static $appConfig = [];
+    protected $shop_access_token_key = 'imactool.shop.access_token.'; //店铺 token 缓存 key
 
     public function httpClient()
     {
         if (!self::$client) {
             self::$client = new Http();
         }
-
         return self::$client;
     }
 
-    public static function setAppConfig($appConfig)
+    public static function setAppConfig($key,$appConfig)
     {
-        self::$appConfig = $appConfig;
+        self::$appConfig[$key] =  $appConfig;
     }
 
-    public static function setShopConfig($shopConfig)
+    public static function getAppConfig($key=null)
     {
-        self::$shopConfig = $shopConfig;
+        if (is_null($key)){
+            return self::$appConfig['config'];
+        }
+        return self::$appConfig['config'][$key];
     }
 
-    public static function getShopConfig()
-    {
-        return self::$shopConfig;
+    public static function setShopConfig($shopConfig){
+        self::$appConfig = array_merge(self::getAppConfig() , $shopConfig);
     }
 
-    public static function getAppConfig()
-    {
+    public static function getShopConfig($key = null){
+         if (is_null($key)){
+            return self::$appConfig['shop'];
+        }
+        return self::$appConfig['shop'][$key];
+
+    }
+
+    public static function getAllConfig(){
         return self::$appConfig;
     }
 
     public function authorizerTokenKey()
     {
-        return $this->shop_access_token_key.'.'.self::getShopConfig()['shopId'];
+        return $this->shop_access_token_key.self::getShopConfig('shopId');
     }
 
     /**
@@ -119,12 +127,12 @@ trait Client
     protected function generateParams(string $url, array $params)
     {
         $method = ltrim(str_replace('/', '.', $url), '.');
-        $accessToken = $this->getAccessToken($this->authorizerTokenKey(), self::getShopConfig()['refreshToken']);
+        $accessToken = $this->getAccessToken($this->authorizerTokenKey(), self::getShopConfig('refreshToken'));
 
         //公共参数
         $publicParams = [
             'method' => $method,
-            'app_key' => self::getAppConfig()['app_key'],
+            'app_key' => self::getAppConfig('app_key'),
             'access_token' => $accessToken,
             'timestamp' => date('Y-m-d H:i:s'),
             'v' => '2',
@@ -136,7 +144,7 @@ trait Client
         $params_json = \json_encode((object) $params, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 
         $string = 'app_key'.$publicParams['app_key'].'method'.$method.'param_json'.$params_json.'timestamp'.$publicParams['timestamp'].'v'.$publicParams['v'];
-        $md5Str = self::getAppConfig()['app_secret'].$string.self::getAppConfig()['app_secret'];
+        $md5Str = self::getAppConfig('app_secret').$string.self::getAppConfig('app_secret');
         $sign = md5($md5Str);
 
         return array_merge($publicParams, [
@@ -159,8 +167,8 @@ trait Client
     public function refreshSelfAccessToken($refresh_token)
     {
         $params = [
-            'app_id' => self::getAppConfig()['app_key'],
-            'app_secret' => self::getAppConfig()['app_secret'],
+            'app_id' => self::getAppConfig('app_key'),
+            'app_secret' => self::getAppConfig('app_secret'),
             'refresh_token' => $refresh_token, //十分钟有效
             'grant_type' => 'refresh_token',
         ];

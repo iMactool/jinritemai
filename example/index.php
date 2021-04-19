@@ -7,7 +7,7 @@
  */
 
 require __DIR__.'/vendor/autoload.php';
-use Imactool\Jinritemai\OAuthService;
+
 use Imactool\Jinritemai\DouDianApp;
 
 //ini_set('date.timezone','Asia/Shanghai');
@@ -19,7 +19,7 @@ $config = [
     'service_id' => '你的服务id',
 ];
 
-$servic = new OAuthService($config);
+$servic = new DouDianApp($config);
 
 //1、获取店铺授权URL
 try {
@@ -52,7 +52,7 @@ try {
 // 授权方已经把店铺授权给你的抖店开放平台了，接下来的代授权方实现业务只需一行代码即可获得授权方实例。
 $shopid = 2322; //$shopid 为授权方店铺的ID shop_id
 $refresh_token = '授权店铺token'; //$refresh_token 为授权方的 refresh_token，
-$app = new DouDianApp($shopid, $refresh_token);
+$app = $servic->shopApp($shopid,$refresh_token);
 
 //获取店铺的已授权品牌列表
 try {

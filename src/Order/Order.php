@@ -45,7 +45,7 @@ class Order extends BaseService
     //获取订单详情 getOrder()
     public function getOrder(array $params)
     {
-        return $this->post('order/detail', $params);
+        return $this->post('order/orderDetail', $params);
     }
 
     //获取服务单列表 getServiceOrderList()
@@ -57,7 +57,7 @@ class Order extends BaseService
     //获取订单列 getOrderList()
     public function getOrderList(array $params)
     {
-        return $this->post('order/list', $params);
+        return $this->post('order/searchList', $params);
     }
 
     //回复服务请求 replyService()

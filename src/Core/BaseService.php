@@ -21,7 +21,12 @@ class BaseService
     public function __construct(Container $app)
     {
         $this->app = $app;
-
+        if (property_exists($app,'shopId')){
+            $config['shopId'] = $app->shopId;
+            $config['refreshToken'] = $app->refreshToken;
+            self::setAppConfig('shop',$config);
+        }
         $this->appRunConfig = self::getAppConfig();
+
     }
 }
