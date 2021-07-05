@@ -79,12 +79,11 @@ class Product extends BaseService
         return $this->post('product/list', $params);
     }
 
-
     /**
      * getProductListV2()
      * 获取商品列表新版
-     * 获取商品列表信息，类似商家后台商品管理列表
-     * @param array $params
+     * 获取商品列表信息，类似商家后台商品管理列表.
+     *
      * @return mixed
      */
     public function getProductListV2(array $params)

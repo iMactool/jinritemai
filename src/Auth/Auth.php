@@ -105,7 +105,8 @@ class Auth extends BaseService
     }
 
     /**
-     * 自用型 - 获取access_token
+     * 自用型 - 获取access_token.
+     *
      * @see  https://op.jinritemai.com/docs/guide-docs/9/21
      * 对于自用型的应用来说，初始化就需要直接 获取 token
      */
@@ -116,7 +117,7 @@ class Auth extends BaseService
             'app_secret' => $this->appRunConfig['app_secret'],
             'code' => '',
             'grant_type' => 'authorization_self',
-            'shop_id'=>$shop_id
+            'shop_id' => $shop_id,
         ];
 
         $options = [
@@ -131,10 +132,4 @@ class Auth extends BaseService
 
         return $result;
     }
-
-
-
-
-
-
 }
