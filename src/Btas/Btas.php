@@ -16,6 +16,7 @@ class Btas extends BaseService
     public function getInspectionOrder(string $order_id)
     {
         $params['order_id'] = $order_id;
+
         return $this->post('btas/getInspectionOrder', $params);
     }
 
@@ -48,6 +49,4 @@ class Btas extends BaseService
     {
         return $this->post('btas/listBrand', $params);
     }
-
-
 }
