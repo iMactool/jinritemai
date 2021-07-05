@@ -23,7 +23,13 @@ $ composer require imactool/jinritemai
 ```
 
 ## Usage 
-> 具体可以看 example 示例代码 ，需要 composer install 
+> 具体可以看 example 示例代码 ，需要 `composer install `
+> 
+> 其中 `example/index.php` 是针对 工具类型 
+> 
+> 而 `example/self_use.php` 则是针对的 自用型
+> 
+
 
 ### 授权相关
 

@@ -16,8 +16,8 @@ date_default_timezone_set('PRC');
 /**
  * ---------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------
- *  这是 工具型应用授权 调用示例
- *
+ *  这是 自用型应用授权 调用示例
+ * 你会发现和 工具型应用授权 除了获取 token 稍有不同，其他的调用方式基本是一致的
  * ---------------------------------------------------------------------------------
  * ---------------------------------------------------------------------------------
  */
@@ -30,21 +30,13 @@ $config = [
 
 $servic = new DouDianApp($config);
 
-//1、获取店铺授权URL
+//商家授权成功之后，即可调用
 try {
-    $authUrl = $servic->Auth->generateAuthUrl('state');
-    var_dump($authUrl);
-} catch (Exception $exception) {
-    var_dump($exception);
-}
-
-//2、拿到 URL code 之后，需要调用一次 requestAccessToken(); 之后就不需要再次调用
-try {
-    $code = '授权店铺token';
-    $accessInfo = $servic->Auth->requestAccessToken($code);
-    file_put_contents('accesstokeninfo.log', print_r($accessInfo, 1).' -- code:'.$code.PHP_EOL, 8);
+    $shopid = 2322;
+    $accessInfo = $servic->Auth->getShopAccessToken($shopid);
+    echo "调用结果：";
     var_dump($accessInfo);
-} catch (Exception $exception) {
+}catch (Exception $exception){
     var_dump($exception);
 }
 
@@ -56,6 +48,7 @@ try {
 } catch (Exception $exception) {
     var_dump($exception);
 }
+
 
 // 授权方已经把店铺授权给你的抖店开放平台了，接下来的代授权方实现业务只需一行代码即可获得授权方实例。
 $shopid = 2322; //$shopid 为授权方店铺的ID shop_id

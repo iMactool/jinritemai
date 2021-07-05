@@ -71,4 +71,10 @@ class Stock extends BaseService
     {
         return $this->post('warehouse/setPriority', $params);
     }
+
+    //设置sku发货时效
+    public function setSkuShipTime(array $params)
+    {
+        return $this->post('promise/setSkuShipTime', $params);
+    }
 }

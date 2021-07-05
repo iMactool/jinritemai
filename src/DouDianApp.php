@@ -9,6 +9,8 @@
 namespace Imactool\Jinritemai;
 
 use Imactool\Jinritemai\AfterSale\AfterSaleProvider;
+use Imactool\Jinritemai\Bill\BillProvider;
+use Imactool\Jinritemai\Btas\BtasProvider;
 use Imactool\Jinritemai\Comment\CommnetProvider;
 use Imactool\Jinritemai\Core\ContainerBase;
 use Imactool\Jinritemai\Http\Client;
@@ -39,6 +41,8 @@ class DouDianApp extends ContainerBase
         LogisticsProvider::class,
         OrderProvider::class,
         StockProvider::class,
+        BillProvider::class,
+        BtasProvider::class
     ];
 
     public function __construct(array $config)
