@@ -19,14 +19,14 @@ class Bill extends BaseService
     }
 
     //查询联盟订单明细
-    public function getOrderList($params){
+    public function getOrderList($params)
+    {
         return $this->post('alliance/getOrderList', $params);
     }
 
     //查询账单明细
-    public function getSettleBillDetail($params){
+    public function getSettleBillDetail($params)
+    {
         return $this->post('order/getSettleBillDetail', $params);
     }
-
-
 }

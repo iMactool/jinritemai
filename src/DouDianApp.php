@@ -42,7 +42,7 @@ class DouDianApp extends ContainerBase
         OrderProvider::class,
         StockProvider::class,
         BillProvider::class,
-        BtasProvider::class
+        BtasProvider::class,
     ];
 
     public function __construct(array $config)
