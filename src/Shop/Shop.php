@@ -48,6 +48,6 @@ class Shop extends BaseService
 
     public function addRessList(array $params)
     {
-        return $this->post('address/list',$params);
+        return $this->post('address/list', $params);
     }
 }

@@ -71,12 +71,12 @@ class Logistics extends BaseService
     public function listShopNetsite(string $logistics_code)
     {
         $params['logistics_code'] = $logistics_code;
+
         return $this->post('logistics/listShopNetsite', $params);
     }
 
     /**
-     * 查询地址快递是否可以送达
-     *
+     * 查询地址快递是否可以送达.
      */
     public function getOutRange(array $params)
     {
@@ -85,16 +85,18 @@ class Logistics extends BaseService
 
     /**
      * 根据省获取全量四级地址
+     *
      * @param Number $province_id
      */
     public function getAreasByProvince(Integer $province_id)
     {
         $params['province_id'] = $province_id;
+
         return $this->post('address/getAreasByProvince', $params);
     }
 
     /**
-     * 获取四级地址全量省份信息
+     * 获取四级地址全量省份信息.
      */
     public function getProvince(array $params)
     {
@@ -102,8 +104,8 @@ class Logistics extends BaseService
     }
 
     /**
-     * 商家ERP/ISV 向字节电子面单系统获取单号和打印信息
-     * @param array $params
+     * 商家ERP/ISV 向字节电子面单系统获取单号和打印信息.
+     *
      * @return mixed
      */
     public function newCreateOrder(array $params)
