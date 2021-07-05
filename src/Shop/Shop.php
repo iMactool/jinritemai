@@ -45,4 +45,9 @@ class Shop extends BaseService
 
         return $this->post('shop/getShopCategory', $params);
     }
+
+    public function addRessList(array $params)
+    {
+        return $this->post('address/list', $params);
+    }
 }

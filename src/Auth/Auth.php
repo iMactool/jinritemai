@@ -103,4 +103,33 @@ class Auth extends BaseService
 
         return CacheAdapter::getInstance()->delete($key);
     }
+
+    /**
+     * 自用型 - 获取access_token.
+     *
+     * @see  https://op.jinritemai.com/docs/guide-docs/9/21
+     * 对于自用型的应用来说，初始化就需要直接 获取 token
+     */
+    public function getShopAccessToken($shop_id)
+    {
+        $params = [
+            'app_id' => $this->appRunConfig['app_key'],
+            'app_secret' => $this->appRunConfig['app_secret'],
+            'code' => '',
+            'grant_type' => 'authorization_self',
+            'shop_id' => $shop_id,
+        ];
+
+        $options = [
+            'headers' => [],
+            'query' => $params,
+        ];
+        $result = $this->httpClient()->request('get', 'oauth2/access_token', $options);
+
+        if (0 !== $result['err_no']) {
+            return $result;
+        }
+
+        return $result;
+    }
 }

@@ -23,7 +23,13 @@ $ composer require imactool/jinritemai
 ```
 
 ## Usage 
-> 具体可以看 example 示例代码 ，需要 composer install 
+> 具体可以看 example 示例代码 ，需要 `composer install `
+> 
+> 其中 `example/index.php` 是针对 工具类型 
+> 
+> 而 `example/self_use.php` 则是针对的 自用型
+> 
+
 
 ### 授权相关
 
@@ -43,6 +49,10 @@ $config = [
 
 $servic = new DouDianApp($config);
 
+```
+
+### 工具型应用授权
+```
 #1、先获取 获取店铺授权URL
 $authUrl = $servic->Auth->generateAuthUrl('state');
  
@@ -54,7 +64,33 @@ $accessInfo = $servic->Auth->requestAccessToken($code);
  
  ```
 
+### 自用型应用授权
+
+``` 
+$shopid = 23; //$shopid 为授权方店铺的ID shop_id
+try {
+    $accessInfo = $servic->Auth->getShopAccessToken($shopid);
+    echo "调用结果：";
+    var_dump($accessInfo);
+}catch (Exception $exception){
+    var_dump($exception);
+}
+```
+
+
+目前工具已支持 `自用型应用授权` 和 `工具型应用授权` 两种授权类型。主要区别如下
+
+|店铺授权类型	|调用方式|说明|
+|---|---|---|
+|工具型应用授权	|1、`$authUrl = $servic->Auth->generateAuthUrl('state');`|	先获取 获取店铺授权URL|
+|工具型应用授权	|2、 ` $code = 'URL code'; $accessInfo = $servic->Auth->requestAccessToken($code); ` |拿到 URL code 之后，需要调用一次 requestAccessToken() 获取授权方授权信息 ;店铺同意授权后，使用授权code，GET方式请求可获取access_token：|
+||
+|自用型应用授权|1、`$shopid = 23;  $servic->Auth->getShopAccessToken($shopid)`|自用型 - 获取access_token|
+
+
+
 ### 获取授权方实例
+> 这里 `自用型应用授权` 和 `工具型应用授权` 都是一样的用法
 ```
 # 授权方已经把店铺授权给你的抖店开放平台了，接下来的代授权方实现业务只需一行代码即可获得授权方实例。
 $shopid = 2222; //$shopid 为授权方店铺的ID shop_id
@@ -70,7 +106,7 @@ $result = $shopAccount->getShopBrandList();
 
 
 ## 实现接口
-> 基于抖店开放平台的工具类型SDK，暂时不支持自用型。即本`SDK`是服务第三方开发者创建工具型应用（工具型应用必须上架，才能走授权流程）
+> 基于抖店开放平台的（工具型、自用型）SDK ，即本`SDK`是服务第三方开发者创建工具型应用（工具型应用必须上架，才能走授权流程）
 > 以下列出来的接口都是已实现的
 > 具体可以看 src/DouDianApp.php .
 > $app 在本文档都是指的 `$servic->shopApp($shopid,$refresh_token);` 得到的实例
@@ -84,7 +120,7 @@ $result = $shopAccount->getShopBrandList();
 
  - 获取店铺的已授权品牌列表 getShopBrandList()
  - 获取店铺后台供商家发布商品的类目 getShopCategory()
-    
+ - 售后地址列表接口 addRessList()
    
 #### 商品api `$app->Shop`
 > `$app->Shop->addProduct($params)`
@@ -114,6 +150,8 @@ $result = $shopAccount->getShopBrandList();
 - 删除规格 delSpec()
 - 获取规格列表 getSpecList()
 - 获取规格详情 getSpec()
+- 获取商品列表新版 getProductListV2()
+ 
 
 ####  订单 api `$app->Order`
 
