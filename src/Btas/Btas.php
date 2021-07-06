@@ -54,6 +54,7 @@ class Btas extends BaseService
     public function downloadOrderCodeByShop($order_id)
     {
         $params['order_id'] = $order_id;
+
         return $this->post('orderCode/downloadOrderCodeByShop', $params);
     }
 
