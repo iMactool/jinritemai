@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^6.5",
+        "guzzlehttp/guzzle": "^6.5|^7.0.1",
         "symfony/cache": "^4.4"
     },
     "autoload": {
