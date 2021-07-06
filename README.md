@@ -216,14 +216,31 @@ $result = $shopAccount->getShopBrandList();
 - 批量绑定地址与区域仓 setBatchAddrWarehouse()
 - 设置指定地址下的仓的优先级 setPriorityWarehouse()
 
-#### 账单 API
+#### 账单 API `$app->Bill`
 
 - 仅自用型应用可使调用该接口 ，(非工具型)暂不支持
+- 仅自用型应用可使调用该接口 查询订单账单明细 settle()
+- 查询联盟订单明细 getOrderList()
+- 查询账单明细 getSettleBillDetail()
 
 #### 评价 API `$app->Commnet`
 
 - 获取店铺的评论列表 getCommentList()
 - 评价回复  replyComment()
+
+#### BIC质检API `$app->Btas`
+> BIC 质检 也包含，这接口变动和改变的太快了~
+
+- 查询订单是否需要质检 getInspectionOrder()
+- 商家调用发货  shipping()
+- 图片质检送检  saveInspectionOnline()
+- 获取订单的质检结果  getOrderInspectionResult()
+- 商家送检调用  saveInspectionInfo()
+- 获取可图片鉴定的品牌  listBrand()
+----
+-   BIC 质检
+- 下载bic订单码 `$app->Btas->downloadOrderCodeByShop()`
+- bic流程订单商家发货接口 `$app->Btas->erpShopBindOrderCode()`
 
 
 ## 问题

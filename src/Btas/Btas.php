@@ -49,4 +49,17 @@ class Btas extends BaseService
     {
         return $this->post('btas/listBrand', $params);
     }
+
+    //下载bic订单码
+    public function downloadOrderCodeByShop($order_id)
+    {
+        $params['order_id'] = $order_id;
+        return $this->post('orderCode/downloadOrderCodeByShop', $params);
+    }
+
+    //bic流程订单商家发货接口
+    public function erpShopBindOrderCode($params)
+    {
+        return $this->post('orderCode/erpShopBindOrderCode', $params);
+    }
 }
